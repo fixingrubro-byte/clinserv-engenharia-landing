@@ -27,7 +27,7 @@ const Hero = () => {
         <div className="max-w-3xl animate-fade-in">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground mb-6 leading-tight">
             Soluções em Engenharia e Manutenção Hospitalar com{" "}
-            <span className="text-accent">Excelência</span>
+            <span className="text-white font-extrabold">Excelência</span>
           </h1>
           
           <p className="text-lg md:text-xl text-primary-foreground/90 mb-8 leading-relaxed">
@@ -58,15 +58,15 @@ const Hero = () => {
           {/* Stats */}
           <div className="grid grid-cols-2 md:grid-cols-3 gap-6 pt-8 border-t border-primary-foreground/20">
             <div className="text-center md:text-left">
-              <div className="text-3xl md:text-4xl font-bold text-accent mb-1">+10</div>
+              <div className="text-3xl md:text-4xl font-bold text-white mb-1">+10</div>
               <div className="text-sm text-primary-foreground/80">Anos de experiência</div>
             </div>
             <div className="text-center md:text-left">
-              <div className="text-3xl md:text-4xl font-bold text-accent mb-1">100%</div>
+              <div className="text-3xl md:text-4xl font-bold text-white mb-1">100%</div>
               <div className="text-sm text-primary-foreground/80">Certificação técnica</div>
             </div>
             <div className="text-center md:text-left col-span-2 md:col-span-1">
-              <div className="text-3xl md:text-4xl font-bold text-accent mb-1">24/7</div>
+              <div className="text-3xl md:text-4xl font-bold text-white mb-1">24/7</div>
               <div className="text-sm text-primary-foreground/80">Atendimento emergencial</div>
             </div>
           </div>
