@@ -1,55 +1,85 @@
-import { ShoppingCart, Phone } from "lucide-react";
+import { ShoppingCart, Phone, Wrench, Hammer } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+
+import autoclaveImg from "@/assets/products/autoclave.jpg";
+import cadeiraImg from "@/assets/products/cadeira-odontologica.jpg";
+import monitorImg from "@/assets/products/monitor-multiparametros.jpg";
+import fotopolimerizadorImg from "@/assets/products/fotopolimerizador.jpg";
+import oximetroImg from "@/assets/products/oximetro.jpg";
+import compressorImg from "@/assets/products/compressor.jpg";
+import manutencaoPreventivaImg from "@/assets/products/manutencao-preventiva.jpg";
+import manutencaoCorretivaImg from "@/assets/products/manutencao-corretiva.jpg";
 
 const products = [
   {
     id: 1,
+    name: "Manutenção Preventiva",
+    category: "Serviço",
+    description: "Manutenção programada para garantir o funcionamento contínuo dos equipamentos hospitalares",
+    price: "Valor a Combinar",
+    image: manutencaoPreventivaImg,
+    isService: true,
+    icon: Wrench
+  },
+  {
+    id: 2,
+    name: "Manutenção Corretiva",
+    category: "Serviço",
+    description: "Reparo e correção de falhas em equipamentos médicos e odontológicos",
+    price: "Valor a Combinar",
+    image: manutencaoCorretivaImg,
+    isService: true,
+    icon: Hammer
+  },
+  {
+    id: 3,
     name: "Autoclave Digital 21L",
     category: "Equipamento Odontológico",
     description: "Autoclave digital de última geração para esterilização de instrumentos odontológicos",
     price: "R$ 3.500,00",
-    image: "https://images.unsplash.com/photo-1581594693702-fbdc51b2763b?w=400&h=300&fit=crop"
+    image: autoclaveImg
   },
   {
-    id: 2,
+    id: 4,
     name: "Cadeira Odontológica Premium",
     category: "Equipamento Odontológico",
     description: "Cadeira odontológica com design ergonômico e sistema hidráulico",
     price: "R$ 12.800,00",
-    image: "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=400&h=300&fit=crop"
+    image: cadeiraImg
   },
   {
-    id: 3,
+    id: 5,
     name: "Monitor Multiparâmetros",
     category: "Equipamento Médico",
     description: "Monitor de sinais vitais com tela touchscreen de 12 polegadas",
     price: "R$ 8.900,00",
-    image: "https://images.unsplash.com/photo-1530497610245-94d3c16cda28?w=400&h=300&fit=crop"
+    image: monitorImg
   },
   {
-    id: 4,
+    id: 6,
     name: "Fotopolimerizador LED",
     category: "Equipamento Odontológico",
     description: "Aparelho de fotopolimerização LED de alta potência",
     price: "R$ 890,00",
-    image: "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=400&h=300&fit=crop"
+    image: fotopolimerizadorImg
   },
   {
-    id: 5,
+    id: 7,
     name: "Oxímetro de Pulso",
     category: "Equipamento Médico",
     description: "Oxímetro portátil com display OLED e leitura rápida",
     price: "R$ 250,00",
-    image: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400&h=300&fit=crop"
+    image: oximetroImg
   },
   {
-    id: 6,
+    id: 8,
     name: "Compressor Odontológico",
     category: "Equipamento Odontológico",
     description: "Compressor de ar isento de óleo para consultórios odontológicos",
     price: "R$ 4.200,00",
-    image: "https://images.unsplash.com/photo-1631248055138-b9282083aa66?w=400&h=300&fit=crop"
+    image: compressorImg
   }
 ];
 
@@ -60,69 +90,76 @@ const Products = () => {
   };
 
   return (
-    <section id="produtos" className="section-padding bg-background">
+    <section id="produtos" className="section-padding" style={{ backgroundColor: "hsl(var(--section-bg))" }}>
       <div className="section-container">
         <div className="text-center mb-12 animate-fade-in">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Produtos Médicos e Odontológicos
+            Produtos e Serviços
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Equipamentos de alta qualidade para sua clínica ou consultório
+            Equipamentos de alta qualidade e serviços especializados para sua clínica ou consultório
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 animate-slide-up">
-          {products.map((product) => (
-            <Card key={product.id} className="overflow-hidden hover:shadow-lg transition-shadow">
-              <div className="relative h-48 overflow-hidden">
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="w-full h-full object-cover transition-transform hover:scale-105"
-                />
-                <div className="absolute top-2 right-2">
-                  <span className="bg-primary text-primary-foreground px-3 py-1 rounded-full text-xs font-semibold">
-                    {product.category}
-                  </span>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 animate-slide-up">
+          {products.map((product, index) => {
+            const ServiceIcon = product.icon;
+            return (
+              <Card 
+                key={product.id} 
+                className="overflow-hidden hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/30 group"
+                style={{ animationDelay: `${index * 50}ms` }}
+              >
+                <div className="relative h-56 overflow-hidden bg-muted">
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  {product.isService && ServiceIcon && (
+                    <div className="absolute top-3 left-3 bg-accent/90 backdrop-blur-sm p-2 rounded-full">
+                      <ServiceIcon className="w-5 h-5 text-accent-foreground" />
+                    </div>
+                  )}
+                  <div className="absolute top-3 right-3">
+                    <Badge variant={product.isService ? "default" : "secondary"} className="text-xs font-semibold">
+                      {product.category}
+                    </Badge>
+                  </div>
                 </div>
-              </div>
-              
-              <CardHeader>
-                <CardTitle className="text-xl">{product.name}</CardTitle>
-                <CardDescription>{product.description}</CardDescription>
-              </CardHeader>
-              
-              <CardContent>
-                <p className="text-2xl font-bold text-primary">{product.price}</p>
-              </CardContent>
-              
-              <CardFooter className="flex gap-2">
-                <Button
-                  onClick={() => handleContact(product.name)}
-                  className="flex-1 bg-accent hover:bg-accent/90"
-                >
-                  <Phone className="w-4 h-4 mr-2" />
-                  Consultar
-                </Button>
-                <Button
-                  variant="outline"
-                  onClick={() => handleContact(product.name)}
-                  className="flex-1"
-                >
-                  <ShoppingCart className="w-4 h-4 mr-2" />
-                  Comprar
-                </Button>
-              </CardFooter>
-            </Card>
-          ))}
+                
+                <CardHeader className="pb-3">
+                  <CardTitle className="text-lg leading-tight">{product.name}</CardTitle>
+                  <CardDescription className="text-sm line-clamp-2">{product.description}</CardDescription>
+                </CardHeader>
+                
+                <CardContent className="pb-3">
+                  <p className={`text-xl font-bold ${product.isService ? 'text-accent' : 'text-primary'}`}>
+                    {product.price}
+                  </p>
+                </CardContent>
+                
+                <CardFooter className="flex flex-col gap-2 pt-0">
+                  <Button
+                    onClick={() => handleContact(product.name)}
+                    className="w-full bg-accent hover:bg-accent/90"
+                    size="sm"
+                  >
+                    <Phone className="w-4 h-4 mr-2" />
+                    Consultar via WhatsApp
+                  </Button>
+                </CardFooter>
+              </Card>
+            );
+          })}
         </div>
 
-        <div className="mt-12 text-center">
-          <p className="text-muted-foreground mb-4">
-            Não encontrou o que procura? Entre em contato para consultar outros produtos!
+        <div className="mt-12 text-center bg-card rounded-lg p-8 shadow-sm border">
+          <p className="text-muted-foreground mb-4 text-lg">
+            Não encontrou o que procura? Entre em contato para consultar outros produtos e serviços!
           </p>
           <Button
-            onClick={() => window.open("https://wa.me/5513982156120?text=Olá! Gostaria de consultar outros produtos.", "_blank")}
+            onClick={() => window.open("https://wa.me/5513982156120?text=Olá! Gostaria de consultar outros produtos e serviços.", "_blank")}
             size="lg"
             className="bg-primary hover:bg-primary/90"
           >
