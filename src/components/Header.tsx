@@ -64,7 +64,7 @@ const Header = () => {
             onClick={() => scrollToSection("hero")}
             className="text-xl md:text-2xl font-bold text-primary-foreground hover:text-accent transition-colors"
           >
-            Clinserv <span className="text-accent">Engenharia</span>
+            Clinserv <span className="text-white font-extrabold">Engenharia</span>
           </button>
 
           {/* Desktop Menu */}
@@ -92,6 +92,12 @@ const Header = () => {
               className="text-primary-foreground hover:text-accent transition-colors font-medium"
             >
               Contato
+            </button>
+            <button
+              onClick={() => scrollToSection("produtos")}
+              className="text-primary-foreground hover:text-accent transition-colors font-medium"
+            >
+              Produtos
             </button>
             <Button
               onClick={() => scrollToSection("orcamento")}
@@ -137,6 +143,12 @@ const Header = () => {
                 className="text-primary-foreground hover:text-accent transition-colors font-medium text-left"
               >
                 Contato
+              </button>
+              <button
+                onClick={() => scrollToSection("produtos")}
+                className="text-primary-foreground hover:text-accent transition-colors font-medium text-left"
+              >
+                Produtos
               </button>
               <Button
                 onClick={() => scrollToSection("orcamento")}
