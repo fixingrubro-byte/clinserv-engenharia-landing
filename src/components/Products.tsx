@@ -85,8 +85,7 @@ const products = [
 
 const Products = () => {
   const handleContact = (productName: string) => {
-    const message = `Olá! Gostaria de mais informações sobre o produto: ${productName}`;
-    window.open(`https://wa.me/5513982156120?text=${encodeURIComponent(message)}`, "_blank");
+    window.open("https://wa.me/5513982156120?text=Vim+Pelo+Site", "_blank");
   };
 
   return (
@@ -164,7 +163,7 @@ const Products = () => {
             Não encontrou o que procura? Entre em contato para consultar outros produtos e serviços!
           </p>
           <Button
-            onClick={() => window.open("https://wa.me/5513982156120?text=Olá! Gostaria de consultar outros produtos e serviços.", "_blank")}
+            onClick={() => window.open("https://wa.me/5513982156120?text=Vim+Pelo+Site", "_blank")}
             size="lg"
             className="bg-accent hover:bg-accent-glow hover:scale-105 shadow-accent transition-all duration-300"
           >

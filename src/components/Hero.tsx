@@ -4,7 +4,7 @@ import heroImage from "@/assets/hero-bg.jpg";
 
 const Hero = () => {
   const handleWhatsApp = () => {
-    window.open("https://wa.me/5513982156120?text=Olá! Gostaria de solicitar um orçamento.", "_blank");
+    window.open("https://wa.me/5513982156120?text=Vim+Pelo+Site", "_blank");
   };
 
   const scrollToForm = () => {
