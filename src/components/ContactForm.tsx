@@ -26,11 +26,8 @@ const ContactForm = () => {
       return;
     }
 
-    // Create WhatsApp message
-    const message = `*Solicitação de Orçamento*\n\n*Nome:* ${formData.name}\n*Empresa:* ${formData.company || "Não informado"}\n*Email:* ${formData.email || "Não informado"}\n*Telefone:* ${formData.phone}\n*Serviço:* ${formData.service}\n*Mensagem:* ${formData.message || "Não informada"}`;
-    
-    const whatsappUrl = `https://wa.me/5513982156120?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, "_blank");
+    // Redirect to WhatsApp
+    window.open("https://wa.me/5513982156120?text=Vim+Pelo+Site", "_blank");
     
     toast.success("Redirecionando para o WhatsApp...");
     
