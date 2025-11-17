@@ -38,13 +38,17 @@ const Services = () => {
   };
 
   return (
-    <section id="servicos" className="section-padding bg-background">
-      <div className="section-container">
-        <div className="text-center mb-16 animate-fade-in">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+    <section id="servicos" className="section-padding bg-background relative overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute top-20 left-0 w-72 h-72 bg-primary/5 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-20 right-0 w-72 h-72 bg-accent/5 rounded-full blur-3xl"></div>
+      
+      <div className="section-container relative z-10">
+        <div className="text-center mb-20 animate-fade-in">
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
             Nossos Serviços
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             Soluções completas em manutenção e engenharia hospitalar para garantir o melhor funcionamento dos seus equipamentos
           </p>
         </div>
@@ -55,26 +59,26 @@ const Services = () => {
             return (
               <Card
                 key={index}
-                className="border-2 hover:border-accent hover:shadow-xl transition-all duration-300 animate-slide-up group"
+                className="border hover:border-accent/50 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 animate-slide-up group bg-card/80 backdrop-blur-sm"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                <CardContent className="p-6 text-center">
-                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-accent/10 mb-4 group-hover:bg-accent group-hover:scale-110 transition-all duration-300">
-                    <Icon className="w-8 h-8 text-accent group-hover:text-accent-foreground" />
+                <CardContent className="p-8 text-center">
+                  <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-accent/10 to-primary/10 mb-6 group-hover:from-accent group-hover:to-accent-glow group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-md">
+                    <Icon className="w-10 h-10 text-accent group-hover:text-accent-foreground transition-colors" />
                   </div>
-                  <h3 className="text-xl font-semibold mb-3 text-foreground">{service.title}</h3>
-                  <p className="text-muted-foreground">{service.description}</p>
+                  <h3 className="text-xl font-bold mb-4 text-foreground group-hover:text-accent transition-colors">{service.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed">{service.description}</p>
                 </CardContent>
               </Card>
             );
           })}
         </div>
 
-        <div className="text-center">
+        <div className="text-center mt-4">
           <Button
             onClick={scrollToForm}
             size="lg"
-            className="bg-accent text-accent-foreground hover:bg-accent/90 font-semibold text-lg"
+            className="bg-accent text-accent-foreground hover:bg-accent-glow hover:scale-105 shadow-accent font-semibold text-lg transition-all duration-300"
           >
             Solicite um orçamento personalizado
           </Button>

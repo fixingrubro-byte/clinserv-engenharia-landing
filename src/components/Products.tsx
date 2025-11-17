@@ -90,13 +90,17 @@ const Products = () => {
   };
 
   return (
-    <section id="produtos" className="section-padding" style={{ backgroundColor: "hsl(var(--section-bg))" }}>
-      <div className="section-container">
-        <div className="text-center mb-12 animate-fade-in">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+    <section id="produtos" className="section-padding relative overflow-hidden" style={{ backgroundColor: "hsl(var(--section-bg))" }}>
+      {/* Background decoration */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
+      
+      <div className="section-container relative z-10">
+        <div className="text-center mb-16 animate-fade-in">
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
             Produtos e Serviços
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Equipamentos de alta qualidade e serviços especializados para sua clínica ou consultório
           </p>
         </div>
@@ -107,22 +111,23 @@ const Products = () => {
             return (
               <Card 
                 key={product.id} 
-                className="overflow-hidden hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/30 group"
+                className="overflow-hidden hover:shadow-2xl hover:-translate-y-1 transition-all duration-500 border hover:border-accent/50 group bg-card/80 backdrop-blur-sm"
                 style={{ animationDelay: `${index * 50}ms` }}
               >
                 <div className="relative h-56 overflow-hidden bg-muted">
                   <img
                     src={product.image}
                     alt={product.name}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   {product.isService && ServiceIcon && (
-                    <div className="absolute top-3 left-3 bg-accent/90 backdrop-blur-sm p-2 rounded-full">
+                    <div className="absolute top-3 left-3 bg-accent/95 backdrop-blur-sm p-2.5 rounded-full shadow-lg group-hover:scale-110 transition-transform duration-300">
                       <ServiceIcon className="w-5 h-5 text-accent-foreground" />
                     </div>
                   )}
                   <div className="absolute top-3 right-3">
-                    <Badge variant={product.isService ? "default" : "secondary"} className="text-xs font-semibold">
+                    <Badge variant={product.isService ? "default" : "secondary"} className="text-xs font-semibold shadow-md">
                       {product.category}
                     </Badge>
                   </div>
@@ -154,14 +159,14 @@ const Products = () => {
           })}
         </div>
 
-        <div className="mt-12 text-center bg-card rounded-lg p-8 shadow-sm border">
-          <p className="text-muted-foreground mb-4 text-lg">
+        <div className="mt-16 text-center bg-gradient-to-br from-card to-accent/5 rounded-2xl p-10 shadow-lg border-2 border-accent/20 hover:shadow-xl transition-all duration-300">
+          <p className="text-muted-foreground mb-6 text-xl font-medium">
             Não encontrou o que procura? Entre em contato para consultar outros produtos e serviços!
           </p>
           <Button
             onClick={() => window.open("https://wa.me/5513982156120?text=Olá! Gostaria de consultar outros produtos e serviços.", "_blank")}
             size="lg"
-            className="bg-primary hover:bg-primary/90"
+            className="bg-accent hover:bg-accent-glow hover:scale-105 shadow-accent transition-all duration-300"
           >
             <Phone className="w-5 h-5 mr-2" />
             Falar com um especialista

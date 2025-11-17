@@ -9,8 +9,10 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-primary text-primary-foreground">
-      <div className="section-container py-12">
+    <footer className="bg-gradient-to-br from-primary to-primary-dark text-primary-foreground relative overflow-hidden">
+      <div className="absolute top-0 right-0 w-96 h-96 bg-accent/10 rounded-full blur-3xl"></div>
+      
+      <div className="section-container py-16 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {/* Logo & Description */}
           <div>
@@ -25,9 +27,9 @@ const Footer = () => {
                 href="https://instagram.com/clinservengenharia2024"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-primary-foreground/10 hover:bg-accent flex items-center justify-center transition-colors"
+                className="w-12 h-12 rounded-full bg-primary-foreground/10 hover:bg-accent hover:scale-110 flex items-center justify-center transition-all duration-300 shadow-lg"
               >
-                <Instagram className="w-5 h-5" />
+                <Instagram className="w-6 h-6" />
               </a>
             </div>
           </div>
