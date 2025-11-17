@@ -46,18 +46,22 @@ const ContactForm = () => {
   };
 
   return (
-    <section id="orcamento" className="section-padding bg-primary text-primary-foreground">
-      <div className="section-container max-w-4xl">
-        <div className="text-center mb-12 animate-fade-in">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+    <section id="orcamento" className="section-padding bg-gradient-to-br from-primary to-primary-dark text-primary-foreground relative overflow-hidden">
+      {/* Background decorations */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-accent/20 rounded-full blur-3xl animate-float"></div>
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary-light/20 rounded-full blur-3xl animate-float" style={{ animationDelay: '1.5s' }}></div>
+      
+      <div className="section-container max-w-4xl relative z-10">
+        <div className="text-center mb-16 animate-fade-in">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">
             Solicite um orçamento sem compromisso
           </h2>
-          <p className="text-lg text-primary-foreground/90">
+          <p className="text-xl text-primary-foreground/95 max-w-2xl mx-auto">
             Nossa equipe entrará em contato rapidamente para entender sua necessidade
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-6 bg-card rounded-lg p-8 shadow-2xl animate-slide-up">
+        <form onSubmit={handleSubmit} className="space-y-6 bg-card/95 backdrop-blur-xl rounded-2xl p-10 shadow-2xl animate-slide-up border border-accent/20">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-2">
               <Label htmlFor="name" className="text-card-foreground">
@@ -146,9 +150,9 @@ const ContactForm = () => {
           <Button
             type="submit"
             size="lg"
-            className="w-full bg-accent text-accent-foreground hover:bg-accent/90 font-semibold text-lg"
+            className="w-full bg-accent text-accent-foreground hover:bg-accent-glow hover:scale-105 shadow-accent font-semibold text-lg transition-all duration-300 group"
           >
-            <Send className="mr-2 h-5 w-5" />
+            <Send className="mr-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             Enviar Solicitação
           </Button>
         </form>

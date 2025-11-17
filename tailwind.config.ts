@@ -25,6 +25,8 @@ export default {
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
+          light: "hsl(var(--primary-light))",
+          dark: "hsl(var(--primary-dark))",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
@@ -41,6 +43,7 @@ export default {
         accent: {
           DEFAULT: "hsl(var(--accent))",
           foreground: "hsl(var(--accent-foreground))",
+          glow: "hsl(var(--accent-glow))",
         },
         popover: {
           DEFAULT: "hsl(var(--popover))",
@@ -60,6 +63,12 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+      },
+      boxShadow: {
+        'accent': '0 10px 30px -5px hsl(var(--accent) / 0.3)',
+        'glow': '0 0 40px -10px hsl(var(--accent) / 0.4)',
+        'xl': '0 20px 50px -10px rgb(0 0 0 / 0.2)',
+        '2xl': '0 25px 60px -15px rgb(0 0 0 / 0.25)',
       },
       borderRadius: {
         lg: "var(--radius)",

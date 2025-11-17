@@ -24,32 +24,32 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-primary shadow-lg" : "bg-primary/95"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        isScrolled ? "bg-primary/98 backdrop-blur-xl shadow-2xl" : "bg-primary/95 backdrop-blur-md"
       }`}
     >
       {/* Top Bar - Contact Info */}
-      <div className="bg-primary/90 border-b border-primary-foreground/10">
-        <div className="section-container py-2">
-          <div className="flex flex-wrap items-center justify-center md:justify-between gap-3 text-xs md:text-sm text-primary-foreground/90">
-            <a href="tel:+5513982156120" className="flex items-center gap-2 hover:text-accent transition-colors">
+      <div className={`bg-primary-dark/50 backdrop-blur-md border-b border-primary-foreground/10 transition-all duration-300 ${isScrolled ? 'py-1' : 'py-2'}`}>
+        <div className="section-container">
+          <div className="flex flex-wrap items-center justify-center md:justify-between gap-3 text-xs md:text-sm text-primary-foreground/95">
+            <a href="tel:+5513982156120" className="flex items-center gap-2 hover:text-accent-glow transition-all duration-300 hover:scale-105">
               <Phone className="w-4 h-4" />
-              <span className="hidden sm:inline">(13) 98215-6120 — Atendimento em toda a Baixada Santista</span>
+              <span className="hidden sm:inline font-medium">(13) 98215-6120 — Atendimento em toda a Baixada Santista</span>
               <span className="sm:hidden">(13) 98215-6120</span>
             </a>
-            <div className="flex items-center gap-4">
-              <a href="mailto:clinservengenharia@gmail.com" className="flex items-center gap-2 hover:text-accent transition-colors">
+            <div className="flex items-center gap-5">
+              <a href="mailto:clinservengenharia@gmail.com" className="flex items-center gap-2 hover:text-accent-glow transition-all duration-300 hover:scale-105">
                 <Mail className="w-4 h-4" />
-                <span className="hidden md:inline">clinservengenharia@gmail.com</span>
+                <span className="hidden md:inline font-medium">clinservengenharia@gmail.com</span>
               </a>
               <a
                 href="https://instagram.com/clinservengenharia2024"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 hover:text-accent transition-colors"
+                className="flex items-center gap-2 hover:text-accent-glow transition-all duration-300 hover:scale-105"
               >
                 <Instagram className="w-4 h-4" />
-                <span className="hidden sm:inline">@clinservengenharia2024</span>
+                <span className="hidden sm:inline font-medium">@clinservengenharia2024</span>
               </a>
             </div>
           </div>
@@ -57,12 +57,12 @@ const Header = () => {
       </div>
 
       {/* Main Navigation */}
-      <nav className="section-container py-4">
+      <nav className="section-container py-5">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <button
             onClick={() => scrollToSection("hero")}
-            className="text-xl md:text-2xl font-bold text-primary-foreground hover:text-accent transition-colors"
+            className="text-xl md:text-2xl font-bold text-primary-foreground hover:text-accent-glow transition-all duration-300 hover:scale-105"
           >
             Clinserv <span className="text-white font-extrabold">Engenharia</span>
           </button>
@@ -71,46 +71,41 @@ const Header = () => {
           <div className="hidden md:flex items-center gap-8">
             <button
               onClick={() => scrollToSection("sobre")}
-              className="text-primary-foreground hover:text-accent transition-colors font-medium"
+              className="text-primary-foreground hover:text-accent-glow transition-all duration-300 font-semibold relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-accent-glow after:transition-all after:duration-300 hover:after:w-full"
             >
               Sobre nós
             </button>
             <button
               onClick={() => scrollToSection("servicos")}
-              className="text-primary-foreground hover:text-accent transition-colors font-medium"
+              className="text-primary-foreground hover:text-accent-glow transition-all duration-300 font-semibold relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-accent-glow after:transition-all after:duration-300 hover:after:w-full"
             >
               Serviços
             </button>
             <button
               onClick={() => scrollToSection("diferenciais")}
-              className="text-primary-foreground hover:text-accent transition-colors font-medium"
+              className="text-primary-foreground hover:text-accent-glow transition-all duration-300 font-semibold relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-accent-glow after:transition-all after:duration-300 hover:after:w-full"
             >
               Diferenciais
             </button>
             <button
-              onClick={() => scrollToSection("contato")}
-              className="text-primary-foreground hover:text-accent transition-colors font-medium"
-            >
-              Contato
-            </button>
-            <button
               onClick={() => scrollToSection("produtos")}
-              className="text-primary-foreground hover:text-accent transition-colors font-medium"
+              className="text-primary-foreground hover:text-accent-glow transition-all duration-300 font-semibold relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-accent-glow after:transition-all after:duration-300 hover:after:w-full"
             >
               Produtos
             </button>
             <Button
               onClick={() => scrollToSection("orcamento")}
-              className="bg-accent text-accent-foreground hover:bg-accent/90 font-semibold"
+              size="sm"
+              className="bg-accent hover:bg-accent-glow hover:scale-105 shadow-accent transition-all duration-300 font-semibold"
             >
-              Solicite um orçamento
+              Solicitar Orçamento
             </Button>
           </div>
 
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden text-primary-foreground p-2"
+            className="md:hidden text-primary-foreground hover:text-accent-glow transition-all duration-300 p-2 hover:scale-110"
           >
             {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -118,43 +113,37 @@ const Header = () => {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden mt-4 py-4 border-t border-primary-foreground/10">
-            <div className="flex flex-col gap-4">
+          <div className="md:hidden mt-6 py-6 border-t border-primary-foreground/20 animate-fade-in">
+            <div className="flex flex-col gap-5">
               <button
                 onClick={() => scrollToSection("sobre")}
-                className="text-primary-foreground hover:text-accent transition-colors font-medium text-left"
+                className="text-primary-foreground hover:text-accent-glow transition-all duration-300 font-semibold text-left hover:translate-x-2"
               >
                 Sobre nós
               </button>
               <button
                 onClick={() => scrollToSection("servicos")}
-                className="text-primary-foreground hover:text-accent transition-colors font-medium text-left"
+                className="text-primary-foreground hover:text-accent-glow transition-all duration-300 font-semibold text-left hover:translate-x-2"
               >
                 Serviços
               </button>
               <button
                 onClick={() => scrollToSection("diferenciais")}
-                className="text-primary-foreground hover:text-accent transition-colors font-medium text-left"
+                className="text-primary-foreground hover:text-accent-glow transition-all duration-300 font-semibold text-left hover:translate-x-2"
               >
                 Diferenciais
               </button>
               <button
-                onClick={() => scrollToSection("contato")}
-                className="text-primary-foreground hover:text-accent transition-colors font-medium text-left"
-              >
-                Contato
-              </button>
-              <button
                 onClick={() => scrollToSection("produtos")}
-                className="text-primary-foreground hover:text-accent transition-colors font-medium text-left"
+                className="text-primary-foreground hover:text-accent-glow transition-all duration-300 font-semibold text-left hover:translate-x-2"
               >
                 Produtos
               </button>
               <Button
                 onClick={() => scrollToSection("orcamento")}
-                className="bg-accent text-accent-foreground hover:bg-accent/90 font-semibold"
+                className="bg-accent hover:bg-accent-glow shadow-accent transition-all duration-300 font-semibold mt-2"
               >
-                Solicite um orçamento
+                Solicitar Orçamento
               </Button>
             </div>
           </div>

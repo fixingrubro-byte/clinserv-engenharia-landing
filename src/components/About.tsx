@@ -10,27 +10,30 @@ const About = () => {
   };
 
   return (
-    <section id="sobre" className="section-padding bg-background">
-      <div className="section-container">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+    <section id="sobre" className="section-padding bg-background relative overflow-hidden">
+      <div className="absolute top-0 left-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl"></div>
+      
+      <div className="section-container relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Image */}
           <div className="animate-fade-in order-2 lg:order-1">
-            <div className="relative">
+            <div className="relative group">
+              <div className="absolute -inset-1 bg-gradient-to-r from-accent to-primary-light rounded-2xl blur opacity-25 group-hover:opacity-40 transition duration-500"></div>
               <img
                 src={teamImage}
                 alt="Equipe Clinserv Engenharia"
-                className="rounded-lg shadow-2xl w-full"
+                className="relative rounded-2xl shadow-2xl w-full"
               />
-              <div className="absolute -bottom-6 -right-6 bg-accent text-accent-foreground px-6 py-4 rounded-lg shadow-xl">
-                <div className="text-3xl font-bold">+10</div>
-                <div className="text-sm">Anos no mercado</div>
+              <div className="absolute -bottom-6 -right-6 bg-gradient-to-br from-accent to-accent-glow text-accent-foreground px-8 py-5 rounded-2xl shadow-2xl hover:scale-105 transition-transform duration-300">
+                <div className="text-4xl font-bold">+10</div>
+                <div className="text-sm font-medium">Anos no mercado</div>
               </div>
             </div>
           </div>
 
           {/* Content */}
           <div className="animate-slide-up order-1 lg:order-2">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-8 leading-tight">
               Sobre a Clinserv Engenharia
             </h2>
             
@@ -71,7 +74,7 @@ const About = () => {
             <Button
               onClick={scrollToServices}
               size="lg"
-              className="bg-accent text-accent-foreground hover:bg-accent/90 font-semibold"
+              className="bg-accent text-accent-foreground hover:bg-accent-glow hover:scale-105 shadow-accent font-semibold transition-all duration-300"
             >
               Saiba mais sobre nossos serviços
             </Button>
