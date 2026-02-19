@@ -7,6 +7,7 @@ import { useCartSync } from "@/hooks/useCartSync";
 import Index from "./pages/Index";
 import Store from "./pages/Store";
 import ProductDetail from "./pages/ProductDetail";
+import ManualProductDetail from "./pages/ManualProductDetail";
 import NotFound from "./pages/NotFound";
 import AdminLogin from "./pages/AdminLogin";
 import AdminLayout from "./components/admin/AdminLayout";
@@ -24,6 +25,7 @@ const AppContent = () => {
     <Routes>
       <Route path="/" element={<Index />} />
       <Route path="/loja" element={<Store />} />
+      <Route path="/produto/manual/:id" element={<ManualProductDetail />} />
       <Route path="/produto/:handle" element={<ProductDetail />} />
       
       {/* Admin */}

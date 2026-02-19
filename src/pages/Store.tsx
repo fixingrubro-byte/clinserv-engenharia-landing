@@ -1,23 +1,42 @@
 import { useEffect, useState } from "react";
 import StoreHeader from "@/components/store/StoreHeader";
 import ProductCard from "@/components/store/ProductCard";
+import ManualProductCard from "@/components/store/ManualProductCard";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import { fetchProducts, type ShopifyProduct } from "@/lib/shopify";
+import { supabase } from "@/integrations/supabase/client";
 import { Loader2, ShoppingBag, Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import PromoBanner from "@/components/store/PromoBanner";
 
+export interface ManualProduct {
+  id: string;
+  name: string;
+  description: string | null;
+  price: number;
+  compare_at_price: number | null;
+  image_url: string | null;
+  category: string | null;
+  is_active: boolean;
+  stock: number;
+}
+
 const Store = () => {
-  const [products, setProducts] = useState<ShopifyProduct[]>([]);
+  const [shopifyProducts, setShopifyProducts] = useState<ShopifyProduct[]>([]);
+  const [manualProducts, setManualProducts] = useState<ManualProduct[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
 
   useEffect(() => {
     const load = async () => {
       try {
-        const data = await fetchProducts(50);
-        setProducts(data);
+        const [shopify, { data: manual }] = await Promise.all([
+          fetchProducts(50),
+          supabase.from("manual_products").select("*").eq("is_active", true).order("sort_order"),
+        ]);
+        setShopifyProducts(shopify);
+        setManualProducts((manual as ManualProduct[]) || []);
       } catch (e) {
         console.error("Failed to load products:", e);
       } finally {
@@ -27,17 +46,24 @@ const Store = () => {
     load();
   }, []);
 
-  const filtered = products.filter(p =>
+  const filteredShopify = shopifyProducts.filter(p =>
     p.node.title.toLowerCase().includes(search.toLowerCase()) ||
     p.node.description.toLowerCase().includes(search.toLowerCase())
   );
+
+  const filteredManual = manualProducts.filter(p =>
+    p.name.toLowerCase().includes(search.toLowerCase()) ||
+    (p.description || "").toLowerCase().includes(search.toLowerCase()) ||
+    (p.category || "").toLowerCase().includes(search.toLowerCase())
+  );
+
+  const totalProducts = filteredShopify.length + filteredManual.length;
 
   return (
     <div className="min-h-screen flex flex-col">
       <StoreHeader />
       <PromoBanner />
 
-      {/* Hero */}
       <section className="pt-36 pb-16 bg-primary text-primary-foreground">
         <div className="section-container text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Loja Virtual</h1>
@@ -56,7 +82,6 @@ const Store = () => {
         </div>
       </section>
 
-      {/* Products Grid */}
       <main className="flex-1 section-padding" style={{ backgroundColor: "hsl(var(--section-bg))" }}>
         <div className="section-container">
           {loading ? (
@@ -64,7 +89,7 @@ const Store = () => {
               <Loader2 className="w-8 h-8 animate-spin text-accent" />
               <span className="ml-3 text-muted-foreground">Carregando produtos...</span>
             </div>
-          ) : filtered.length === 0 ? (
+          ) : totalProducts === 0 ? (
             <div className="text-center py-20">
               <ShoppingBag className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
               <h2 className="text-2xl font-bold text-foreground mb-2">
@@ -76,7 +101,10 @@ const Store = () => {
             </div>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 animate-slide-up">
-              {filtered.map((product) => (
+              {filteredManual.map((product) => (
+                <ManualProductCard key={product.id} product={product} />
+              ))}
+              {filteredShopify.map((product) => (
                 <ProductCard key={product.node.id} product={product} />
               ))}
             </div>

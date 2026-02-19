@@ -1,23 +1,29 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ShoppingBag, Image, DollarSign, TrendingUp } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { ShoppingBag, Image, Package, TrendingUp, Plus, ArrowRight } from "lucide-react";
 import { fetchProducts } from "@/lib/shopify";
 import { supabase } from "@/integrations/supabase/client";
 
 const Dashboard = () => {
-  const [productCount, setProductCount] = useState(0);
+  const [shopifyCount, setShopifyCount] = useState(0);
+  const [manualCount, setManualCount] = useState(0);
   const [bannerCount, setBannerCount] = useState(0);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const load = async () => {
       try {
-        const [products, { count }] = await Promise.all([
+        const [products, banners, manual] = await Promise.all([
           fetchProducts(50),
-          supabase.from("banners").select("*", { count: "exact", head: true }),
+          supabase.from("banners").select("*", { count: "exact", head: true }).eq("is_active", true),
+          supabase.from("manual_products").select("*", { count: "exact", head: true }).eq("is_active", true),
         ]);
-        setProductCount(products.length);
-        setBannerCount(count || 0);
+        setShopifyCount(products.length);
+        setBannerCount(banners.count || 0);
+        setManualCount(manual.count || 0);
       } catch (e) {
         console.error(e);
       } finally {
@@ -28,10 +34,10 @@ const Dashboard = () => {
   }, []);
 
   const stats = [
-    { title: "Produtos", value: productCount, icon: ShoppingBag, color: "text-primary" },
+    { title: "Produtos Manuais", value: manualCount, icon: Package, color: "text-primary" },
+    { title: "Produtos Shopify", value: shopifyCount, icon: ShoppingBag, color: "text-blue-600" },
     { title: "Banners Ativos", value: bannerCount, icon: Image, color: "text-accent" },
-    { title: "Vendas (mês)", value: "—", icon: DollarSign, color: "text-green-600" },
-    { title: "Visitas (mês)", value: "—", icon: TrendingUp, color: "text-orange-500" },
+    { title: "Total Produtos", value: manualCount + shopifyCount, icon: TrendingUp, color: "text-green-600" },
   ];
 
   return (
@@ -58,18 +64,32 @@ const Dashboard = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <Card>
           <CardHeader>
-            <CardTitle>Atividade Recente</CardTitle>
+            <CardTitle>Ações Rápidas</CardTitle>
           </CardHeader>
-          <CardContent>
-            <p className="text-muted-foreground text-sm">Nenhuma atividade recente registrada.</p>
+          <CardContent className="space-y-3">
+            <Button variant="outline" className="w-full justify-between" onClick={() => navigate("/admin/produtos")}>
+              <span className="flex items-center gap-2"><Plus className="w-4 h-4" />Adicionar Produto Manual</span>
+              <ArrowRight className="w-4 h-4" />
+            </Button>
+            <Button variant="outline" className="w-full justify-between" onClick={() => navigate("/admin/banners")}>
+              <span className="flex items-center gap-2"><Plus className="w-4 h-4" />Criar Banner Promocional</span>
+              <ArrowRight className="w-4 h-4" />
+            </Button>
+            <Button variant="outline" className="w-full justify-between" onClick={() => navigate("/admin/configuracoes")}>
+              <span className="flex items-center gap-2"><Image className="w-4 h-4" />Configurar Logo/Favicon</span>
+              <ArrowRight className="w-4 h-4" />
+            </Button>
           </CardContent>
         </Card>
         <Card>
           <CardHeader>
-            <CardTitle>Ações Rápidas</CardTitle>
+            <CardTitle>Informações</CardTitle>
           </CardHeader>
-          <CardContent className="space-y-3">
-            <p className="text-sm text-muted-foreground">Use o menu lateral para gerenciar produtos, banners e configurações da loja.</p>
+          <CardContent className="space-y-2 text-sm text-muted-foreground">
+            <p>• <strong>Produtos Manuais:</strong> Cadastrados diretamente no painel, vendidos via WhatsApp.</p>
+            <p>• <strong>Produtos Shopify:</strong> Sincronizados do Shopify, com carrinho e checkout integrado.</p>
+            <p>• <strong>Banners:</strong> Exibidos na loja para promoções e comunicados.</p>
+            <p>• <strong>Configurações:</strong> Logo e favicon do site e loja.</p>
           </CardContent>
         </Card>
       </div>
