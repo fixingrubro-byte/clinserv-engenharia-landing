@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Phone, Mail, Instagram } from "lucide-react";
+import { Menu, X, Phone, Mail, Instagram, ShoppingBag } from "lucide-react";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -93,6 +94,12 @@ const Header = () => {
             >
               Produtos
             </button>
+            <Link
+              to="/loja"
+              className="text-primary-foreground hover:text-accent-glow transition-all duration-300 font-semibold flex items-center gap-1.5 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-accent-glow after:transition-all after:duration-300 hover:after:w-full"
+            >
+              <ShoppingBag className="w-4 h-4" /> Loja
+            </Link>
             <Button
               onClick={() => scrollToSection("orcamento")}
               size="sm"
@@ -139,6 +146,13 @@ const Header = () => {
               >
                 Produtos
               </button>
+              <Link
+                to="/loja"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="text-primary-foreground hover:text-accent-glow transition-all duration-300 font-semibold text-left hover:translate-x-2 flex items-center gap-2"
+              >
+                <ShoppingBag className="w-4 h-4" /> Loja Virtual
+              </Link>
               <Button
                 onClick={() => scrollToSection("orcamento")}
                 className="bg-accent hover:bg-accent-glow shadow-accent transition-all duration-300 font-semibold mt-2"
