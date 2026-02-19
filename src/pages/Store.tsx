@@ -6,6 +6,7 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 import { fetchProducts, type ShopifyProduct } from "@/lib/shopify";
 import { Loader2, ShoppingBag, Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
+import PromoBanner from "@/components/store/PromoBanner";
 
 const Store = () => {
   const [products, setProducts] = useState<ShopifyProduct[]>([]);
@@ -34,6 +35,7 @@ const Store = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <StoreHeader />
+      <PromoBanner />
 
       {/* Hero */}
       <section className="pt-36 pb-16 bg-primary text-primary-foreground">
