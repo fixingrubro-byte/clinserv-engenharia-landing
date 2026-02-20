@@ -24,7 +24,7 @@ const Footer = () => {
             </p>
             <div className="flex gap-4">
               <a
-                href="https://instagram.com/clinservengenharia2024"
+                href="https://instagram.com/clinservengenharia_"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-12 h-12 rounded-full bg-primary-foreground/10 hover:bg-accent hover:scale-110 flex items-center justify-center transition-all duration-300 shadow-lg"

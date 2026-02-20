@@ -31,7 +31,7 @@ const StoreHeader = () => {
                 <Mail className="w-4 h-4" />
                 <span className="hidden md:inline font-medium">clinservengenharia@gmail.com</span>
               </a>
-              <a href="https://instagram.com/clinservengenharia2024" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-accent-glow transition-all duration-300">
+              <a href="https://instagram.com/clinservengenharia_" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-accent-glow transition-all duration-300">
                 <Instagram className="w-4 h-4" />
               </a>
             </div>
